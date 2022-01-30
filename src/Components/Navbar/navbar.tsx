@@ -6,9 +6,12 @@ function Navbar() {
     return (
         <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
             <div className="flex-none px-2 mx-2">
-                <span className="text-lg font-bold">
+            <Link  to="/">
+            <span className="text-lg font-bold">
                     Smart Cookers
                 </span>
+                    </Link>
+                
             </div>
             <div className="flex-1 px-2 mx-2">
                 <div className="items-stretch hidden lg:flex">

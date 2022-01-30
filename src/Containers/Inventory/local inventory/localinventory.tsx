@@ -4,7 +4,7 @@ import {getProducts} from "../../../Services/Product/Product"
 
 function Localinventory() {
    
-    const [productData, setProductData] = useState();
+    const [productData, setProductData] = useState([]);
 
     useEffect(()=>{
         getProducts().then((res) =>
@@ -38,8 +38,8 @@ function Localinventory() {
 
     return (
         <div>
-            {console.log(productData)}
-                    <Inventoryhome items={productData}/>   
+            {/* {console.log(productData)} */}
+                    <Inventoryhome items={itemList}/>   
 
         </div>
     )
