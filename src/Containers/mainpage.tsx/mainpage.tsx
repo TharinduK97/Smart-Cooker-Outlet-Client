@@ -6,10 +6,10 @@ function Mainpage() {
     return (
         <div>
 
-            <Link to="/login" >Go to the About Page!</Link>
+            <Link to="/login" >login</Link>
             <br />
 
-            <Link to="/inventory" > <button >Go to layout, with a number</button></Link>
+            <Link to="/inventory" > <button >inventory</button></Link>
 
         </div>
     )
