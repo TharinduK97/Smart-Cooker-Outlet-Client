@@ -6,7 +6,9 @@ type itemprops = {
         product_name: string;
         price: number;
         quantity: number;
-        last_updated: string
+        last_updated: string;
+        productDescription:string;
+        productImage:string;
     };
 }
 

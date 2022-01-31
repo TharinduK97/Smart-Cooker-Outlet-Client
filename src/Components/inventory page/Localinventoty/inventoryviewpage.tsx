@@ -13,7 +13,7 @@ function Inventoryviewpage() {
 
                         <div className="card card-bordered">
                             <figure>
-                                <img src="https://picsum.photos/id/1005/400/250" />
+                                <img src="https://www.ubuy.com.lk/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNjFHNkVEV2pnYUwuX0FDX1NMMTUwMF8uanBn.jpg" />
                             </figure>
                             <div className="card-body">
                                 <h2 className="card-title">Top image

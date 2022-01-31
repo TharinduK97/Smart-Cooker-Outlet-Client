@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import Inventoryitem from '../Localinventoty/inventoryitem';
-type inventoryitems = {
-    items: {
-        product_code: number;
-        product_name: string;
-        price: number;
-        quantity: number;
-        last_updated: string;
-        productDescription:string;
-        productImage:string;
+import Orderitem from './orderitem';
+type orders = {
+    orders: {
+        order_Id: number;
+        outlet_Id: number;
+        staff_Id: number;
+        NIC: string;
+        order_Date: string;
+        order_Time: string;
+        quantity:number;
+        order_status:string;
     }[];
 
     
 }
 
 
-function Inventoryhome(props:inventoryitems) {
+function Oderpage(props:orders) {
     return (
         <div>
             <div className="grid grid-cols-6 gap-4">
@@ -26,21 +27,24 @@ function Inventoryhome(props:inventoryitems) {
                         <table className="table w-full table-compact">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Product Code</th>
-                                    <th>Product Name</th>
-                                    <th>Price</th>
+                                    
+                                    <th>Order Code</th>
+                                    <th> Outlet Code</th>
+                                    <th> Staff Id</th>
+                                    <th>NIC</th>
+                                    <th>Order Date</th>
+                                    <th>Order Time</th>
                                     <th>Quantity</th>
-                                    <th>Last Updated</th>
+                                    <th>order_status</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
                                
-                            {props.items.map(item =>
+                            {props.orders.map(order =>
                                 {
                                     return(
-                                            <Inventoryitem itemObj={item} key={item.product_code+1} />   
+                                            <Orderitem order={order} key={order.order_Id+1} />   
                                     )
                                 })}
 
@@ -57,4 +61,4 @@ function Inventoryhome(props:inventoryitems) {
     )
 }
 
-export default Inventoryhome
+export default Oderpage
