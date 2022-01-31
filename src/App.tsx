@@ -8,6 +8,8 @@ import Inventoryview from '../src/containers/Inventory/Inventoryview/inventoryvi
 import Mainpage from './containers/mainpage.tsx/mainpage';
 import Navbar from './components/Navbar/navbar';
 import AddNewProduct from './containers/AddNewProduct/addNewProduct';
+import Order from './containers/Order/Order';
+import Oderviewpage from './components/Orders/oderviewPage';
 
 
 export interface IAppProps { }
@@ -22,10 +24,14 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
 
         <Navbar />
         <Routes >
+       
         <Route path="/addnewproduct" element={<AddNewProduct />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/inventory/:id" element={<Inventoryview/>} />
-            <Route path="/inventory" element={<Inventory/>} /> */}
+         
+          <Route path="/orders">
+            <Route index element={<Order />} />
+            <Route path=":number" element={<Oderviewpage />} />
+          </Route>
           <Route path="/inventory">
             <Route index element={<Inventory />} />
             <Route path=":number" element={<Inventoryview />} />
