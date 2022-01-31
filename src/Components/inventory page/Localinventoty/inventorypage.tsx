@@ -19,6 +19,7 @@ function Inventoryhome(props:inventoryitems) {
             <div className="grid grid-cols-6 gap-4">
                 <div className="col-start-2 col-end-6 ...">
 
+               
                     <div className="overflow-x-auto">
                         <table className="table w-full table-compact">
                             <thead>
