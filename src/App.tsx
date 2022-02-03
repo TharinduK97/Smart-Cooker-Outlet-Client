@@ -34,7 +34,7 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
           </Route>
           <Route path="/inventory">
             <Route index element={<Inventory />} />
-            <Route path=":number" element={<Inventoryview />} />
+            <Route path=":id" element={<Inventoryview />} />
           </Route>
           <Route path="/"  element={<Mainpage />} />
 

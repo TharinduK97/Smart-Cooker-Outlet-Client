@@ -18,9 +18,7 @@ function Navbar() {
                     <Link className="btn btn-ghost btn-sm rounded-btn" to="/inventory">
                         Local inventory
                     </Link>
-                    <a className="btn btn-ghost btn-sm rounded-btn">
-                        Global inventory
-                    </a>
+                
                     <Link className="btn btn-ghost btn-sm rounded-btn" to="/orders">
                         Orders
                     </Link>
@@ -30,9 +28,9 @@ function Navbar() {
 
 
             <div className="flex-none pr-4">
-            <a className="btn btn-ghost btn-sm rounded-btn">
+            {/* <a className="btn btn-ghost btn-sm rounded-btn">
                         Log out
-                    </a>
+                    </a> */}
 
             </div>
         </div>

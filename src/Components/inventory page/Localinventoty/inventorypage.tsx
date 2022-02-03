@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Inventoryitem from '../Localinventoty/inventoryitem';
+
 type inventoryitems = {
     items: {
         product_code: number;

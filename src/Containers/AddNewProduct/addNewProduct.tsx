@@ -2,6 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { addNewProduct } from "../../Services/Product";
+import { data } from "autoprefixer";
+
 
 interface IFormInputs {
     ProductName: string
@@ -29,7 +32,22 @@ function AddNewProduct() {
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
         resolver: yupResolver(schema)
     });
-    const onSubmit = (data: IFormInputs) => console.log(data);
+    const onSubmit = (data: IFormInputs) => {
+        console.log(data.ProductName)
+        // addNewProduct(data).then(function (response) {
+            
+        //     console.log(response);
+        //     // return response;
+        // })
+        // .catch(function (response) {
+            
+        //     console.log(response);
+        // });
+
+
+    }
+
+    
 
     return (
         <div>

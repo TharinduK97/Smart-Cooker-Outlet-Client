@@ -1,11 +1,24 @@
 
 
-function Inventoryviewpage() {
 
+type productprops = {
+    product: {
+        product_code: number;
+        product_name: string;
+        price: number;
+        quantity: number;
+        last_updated: string;
+        productDescription: string;
+        productImage: string;
+    };
+}
+
+function ProductView(props: productprops) {
+    
     return (
         <div>
 
-            <div className="container mx-auto ">
+            <div className="container mx-auto pt-6 ">
 
                 <div className="grid grid-cols-7 gap-4">
 
@@ -13,27 +26,35 @@ function Inventoryviewpage() {
 
                         <div className="card card-bordered">
                             <figure>
-                                <img src="https://www.ubuy.com.lk/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNjFHNkVEV2pnYUwuX0FDX1NMMTUwMF8uanBn.jpg" />
+                                <img src={props.product.productImage} />
                             </figure>
                             <div className="card-body">
-                                <h2 className="card-title">Top image
-                                    <div className="badge mx-2 badge-secondary">NEW</div>
+                                <h2 className="card-title">
+                                    <div className="badge mx-2 badge-secondary">{props.product.product_name}</div>
                                 </h2>
-                                <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p>
+                                <div className="grid grid-cols-5 gap-4 pb-2">
+
+                                    <div className="col-start-1 col-end-3 ...">
+                                        <p className="text-lg"> Rs. {props.product.price}</p>
+                                    </div>
+                                    <div className="col-end-6 col-span-2 ...">
+                                        <p><div className="badge badge-accent">Qty {props.product.quantity}</div></p>
+                                    </div>
+
+                                </div>
+                                <p>{props.product.productDescription}</p>
                                 <div className="justify-end card-actions">
-                                    <button className="btn btn-secondary">More info</button>
+                                
                                 </div>
                             </div>
                         </div>
-                      
+
 
                     </div>
                 </div>
             </div>
-
-
         </div>
     )
 }
 
-export default Inventoryviewpage
+export default ProductView
