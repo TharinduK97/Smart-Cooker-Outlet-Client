@@ -27,9 +27,9 @@ function Inventoryitem(props: orderprops) {
             <td>{props.order.quantity}</td>
             <td>{props.order.order_status}</td>
             <td>
-            <Link  className="link textdec" to={`/orders/${props.order.order_Id}`}>
+            {/* <Link  className="link textdec" to={`/orders/${props.order.order_Id}`}>
             <button className="btn btn-ghost">Info</button>
-            </Link>
+            </Link> */}
 
             </td>
 
