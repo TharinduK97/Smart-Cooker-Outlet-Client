@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from "../../hooks";
+import { authenticateUser } from "../../store/loginSlice";
+import { isAuthenticated, isUserInventory, isUserSales } from "../../Services/authenticationService";
+
 
 export interface ILoginPageProps { }
 
@@ -20,11 +25,35 @@ const schema = yup.object({
 
 const LoginPageProps: React.FunctionComponent<ILoginPageProps> = (props) => {
 
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
         resolver: yupResolver(schema)
     });
-    const onSubmit = (data: IFormInputs) => console.log(data);
+    const onSubmit = (data: IFormInputs) => {
 
+         console.log(data)
+        dispatch(authenticateUser(data)).then(
+            ()=>{
+                if (isAuthenticated() && isUserInventory()) {
+       
+                    navigate('/inventory');
+            
+            } else if (isAuthenticated() && isUserSales()) {
+       
+                navigate('/orders');
+        
+             }
+            else{
+                alert('Either of username or password is incorrect')
+            }
+            }
+
+        );
+
+    };
 
 
 
@@ -62,9 +91,7 @@ const LoginPageProps: React.FunctionComponent<ILoginPageProps> = (props) => {
 
                         </div>
 
-                        {/* <div className="col-start-3 col-end-4 ... ">
-                            <button className="btn btn-outline  w-96 " type="submit">Login</button>
-                        </div> */}
+                        
                         <div className="col-start-3 col-span-2 ... ">
                             
                         <button className="btn btn-outline " type="submit">Login</button>

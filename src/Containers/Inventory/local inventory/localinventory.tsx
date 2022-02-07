@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Inventoryhome from "../../../components/Inventory page/Localinventoty/inventorypage";
-import { getProducts } from "../../../Services/Product";
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import {  } from "../../../Services/Product";
+import { fetchProducts, selectProductLists } from '../../../store/productSlice';
 
 function Localinventory() {
 
-    const [productData, setProductData] = useState([]);
+    const dispatch = useAppDispatch();
+
+    const productList = useAppSelector(selectProductLists);
 
     useEffect(() => {
-        getProducts().then((res) =>
-            setProductData(res.data)
-        );
-    }, []);
-
-    
+        dispatch(fetchProducts());
+      }, [dispatch]);
 
     return (
         <div>
@@ -28,7 +27,7 @@ function Localinventory() {
                     </div>
                 </div>
             </div>
-            <Inventoryhome items={productData} />
+            <Inventoryhome items={productList.productList} />
 
         </div>
     )

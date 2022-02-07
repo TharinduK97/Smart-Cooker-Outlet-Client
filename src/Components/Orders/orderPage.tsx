@@ -3,8 +3,6 @@ import Orderitem from './orderitem';
 type orders = {
     orders: {
         order_Id: number;
-        outlet_Id: number;
-        staff_Id: number;
         NIC: string;
         order_Date: string;
         order_Time: string;
@@ -29,8 +27,6 @@ function Oderpage(props:orders) {
                                 <tr>
                                     
                                     <th>Order Code</th>
-                                    <th> Outlet Code</th>
-                                    <th> Staff Id</th>
                                     <th>NIC</th>
                                     <th>Order Date</th>
                                     <th>Order Time</th>
