@@ -1,23 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
  import Orderpage from '../../components/Orders/orderPage'
+import { getRole } from '../../Services/localStorage';
 
 function Order() {
 
     const [orderData, setOrdertData] = useState([]);
 
-    // useEffect(() => {
-    //     // getProducts().then((res) =>
-    //     //     setProductData(res.data)
-    //     );
-    // }, []);
 
     const OrderList = [
         {
             
                 order_Id: 1,
-                outlet_Id: 2,
-                staff_Id: 3,
                 NIC: "xxx",
                 order_Date: "2022-1-12",
                 order_Time: "11.30 a.m",
@@ -27,8 +21,6 @@ function Order() {
         },
         {
             order_Id: 1,
-                outlet_Id: 2,
-                staff_Id: 3,
                 NIC: "xxx",
                 order_Date: "2022-1-12",
                 order_Time: "11.30 a.m",
@@ -37,8 +29,6 @@ function Order() {
         },
         {
             order_Id: 1,
-            outlet_Id: 2,
-            staff_Id: 3,
             NIC: "xxx",
             order_Date: "2022-1-12",
             order_Time: "11.30 a.m",
@@ -51,7 +41,7 @@ function Order() {
         <div>
             
             <Orderpage orders={OrderList} />
-
+            {console.log(getRole())}
         </div>
     )
 }

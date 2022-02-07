@@ -19,8 +19,6 @@ function Inventoryitem(props: orderprops) {
         <tr >
             
             <td>{props.order.order_Id}</td>
-            <td>{props.order.outlet_Id}</td>
-            <td>{props.order.staff_Id}</td>
             <td>{props.order.NIC}</td>
             <td>{props.order.order_Date}</td>
             <td>{props.order.order_Time}</td>
