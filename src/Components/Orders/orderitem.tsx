@@ -2,27 +2,28 @@ import { Link} from 'react-router-dom';
 
 type orderprops = {
     order: {
+        user_code: number;
+        created_At:string;
+        quantity: number;
+        order_status: string;
+        product_Code: number;
+        outlet_code: number;
         order_Id: number;
-        outlet_Id: number;
-        staff_Id: number;
-        NIC: string;
-        order_Date: string;
-        order_Time: string;
-        quantity:number;
-        order_status:string;
     }
 }
 
 function Inventoryitem(props: orderprops) {
-   
+  
     return (
+
         <tr >
             
             <td>{props.order.order_Id}</td>
-            <td>{props.order.NIC}</td>
-            <td>{props.order.order_Date}</td>
-            <td>{props.order.order_Time}</td>
+            <td>{props.order.outlet_code}</td>
             <td>{props.order.quantity}</td>
+            <td>{props.order.created_At}</td>
+            <td>{props.order.quantity}</td>
+            <td>{props.order.user_code}</td>
             <td>{props.order.order_status}</td>
             <td>
             {/* <Link  className="link textdec" to={`/orders/${props.order.order_Id}`}>
@@ -30,8 +31,8 @@ function Inventoryitem(props: orderprops) {
             </Link> */}
 
             </td>
-
         </tr>
+
     )
 }
 

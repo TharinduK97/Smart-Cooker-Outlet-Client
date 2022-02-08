@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { env_var } from '../config/env';
-import { history } from '../helpers/history';
 import { getFormDataHeader, getHeaderInfo } from '../helpers/tokenCreator';
 import { removeTokens } from './localStorage';
 const handleResponse = (response: any) => {

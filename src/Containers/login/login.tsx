@@ -27,14 +27,15 @@ const LoginPageProps: React.FunctionComponent<ILoginPageProps> = (props) => {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
+    const [error, setError] = useState(false);
 
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
         resolver: yupResolver(schema)
     });
-    const onSubmit = (data: IFormInputs) => {
 
-         console.log(data)
+    const onSubmit = (data: IFormInputs) => {
+        //  console.log(data)
+
         dispatch(authenticateUser(data)).then(
             ()=>{
                 if (isAuthenticated() && isUserInventory()) {
@@ -47,8 +48,9 @@ const LoginPageProps: React.FunctionComponent<ILoginPageProps> = (props) => {
         
              }
             else{
-                alert('Either of username or password is incorrect')
-            }
+            
+                setError(true);
+                }
             }
 
         );
@@ -66,6 +68,9 @@ const LoginPageProps: React.FunctionComponent<ILoginPageProps> = (props) => {
 
                         <div className="col-start-3 col-span-2 ...  ">
                             <div className="form-control pb-2">
+                            {
+                            error && <label><p className="text-red-500 pl-1 text-lg ">Either of username or password is incorrect</p></label>
+                        }
                                 <label className="label">
                                     <span className="label-text text-lg">Username</span>
                                 </label>
@@ -90,7 +95,7 @@ const LoginPageProps: React.FunctionComponent<ILoginPageProps> = (props) => {
 
 
                         </div>
-
+                       
                         
                         <div className="col-start-3 col-span-2 ... ">
                             
