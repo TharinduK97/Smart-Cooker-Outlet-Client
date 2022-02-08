@@ -8,8 +8,7 @@ function Oderviewpage() {
             <h2>
                 order view
             </h2>
-
-
+            
         </div>
     )
 }
