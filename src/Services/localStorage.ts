@@ -3,13 +3,17 @@ import jwt_decode from "jwt-decode";
 
 
 export const setTokens = (authRes: any) => {
-  // console.log(authRes)
-  let decoded: any = jwt_decode(authRes);
+   console.log(authRes.data)
+  localStorage.setItem('token', authRes.data);
 
-  localStorage.setItem('token', authRes);
-  localStorage.setItem('user', decoded.nameid);
-  localStorage.setItem('role', decoded.role);
-  
+};
+
+export const setRole = async (Res: any) => {
+  console.log(Res.data)
+ 
+ localStorage.setItem('user', Res.data.id);
+ localStorage.setItem('role', Res.data.role.title);
+  return await "Success";
 };
 
 export const removeTokens = () => {
@@ -22,7 +26,7 @@ export const removeTokens = () => {
   
 };
 
-export const getAccessToken = () => localStorage.getItem('token')?.slice(1, -1);
+export const getAccessToken = () => localStorage.getItem('token');
 export const getUser = () => localStorage.getItem('user');
 export const getRole = () => localStorage.getItem('role');
  

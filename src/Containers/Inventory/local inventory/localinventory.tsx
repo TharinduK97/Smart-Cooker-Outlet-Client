@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Inventoryhome from "../../../components/Inventory page/Localinventoty/inventorypage";
 import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { isUserInventory } from '../../../Services/authenticationService';
 import {  } from "../../../Services/Product";
 import { fetchProducts, selectProductLists } from '../../../store/productSlice';
 
@@ -21,9 +22,12 @@ function Localinventory() {
                 <div className="grid grid-cols-8 gap-6 pt-6 ">
 
                     <div className="col-start-2 col-end-3 ">
-                    <Link to="/addnewproduct" className="btn btn btn-outline  ">
+                        {
+                            isUserInventory()&&<Link to="/addnewproduct" className="btn btn btn-outline  ">
                             Add new Product
                     </Link>
+                        }
+                    
                     </div>
                 </div>
             </div>

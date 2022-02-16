@@ -2,6 +2,7 @@ import { getAccessToken } from '../Services/localStorage';
 
 export const getHeaderInfo = async function () {
   let token = await getAccessToken();
+  console.log(token)
   return {
     headers: {
       'Content-Type': 'application/json',
