@@ -27,7 +27,7 @@ function Navbar() {
                    
                     {isAuthenticated() && isUserInventory()  ?
                         <Link className="btn btn-ghost btn-sm rounded-btn" to="/inventory">
-                        Local inventory
+                        Inventory
                     </Link>
                         : <p></p>}
                 

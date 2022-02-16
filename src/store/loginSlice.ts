@@ -1,10 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 import { RootState } from '.';
-
-import { authenticate } from '../Services/authenticationService';
-import { setTokens } from '../Services/localStorage';
-
+import { authenticate, userCred } from '../Services/authenticationService';
+import { setRole, setTokens } from '../Services/localStorage';
 
 
 export interface IAuthentication {
@@ -44,10 +41,16 @@ export const authenticateUser = (userData: any) => async (dispatch: any) => {
   try {
     const authData = await authenticate(
       userData
-    );
+    ).then(()=>{
+       userCred().then((Res:any)=>{
+        setRole(Res)
+      });
+     
+    });
     // console.log(authData);
-    setTokens(authData.data);
-    dispatch(success(authData.data));
+    dispatch(success(authData));
+  
+    
 
   } catch (err: any) {
     console.log(err);

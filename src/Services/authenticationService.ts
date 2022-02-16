@@ -1,5 +1,5 @@
 import { getAccessToken, getRole } from './localStorage';
-import { loginpost } from './apiService';
+import { loginpost,get } from './apiService';
 
 export interface AuthPayload {
   username: string;
@@ -8,7 +8,13 @@ export interface AuthPayload {
 
 export const authenticate = async (data: AuthPayload) => {
 
-  return await loginpost(`Auth/Login`, data);
+  return await loginpost(`Auth/StaffLogin`, data);
+
+};
+
+export const userCred = async () => {
+
+  return await get(`Staff`);
 
 };
 

@@ -35,29 +35,27 @@ const LoginPageProps: React.FunctionComponent<ILoginPageProps> = (props) => {
 
     const onSubmit = (data: IFormInputs) => {
         //  console.log(data)
-
-        dispatch(authenticateUser(data)).then(
-            ()=>{
-                if (isAuthenticated() && isUserInventory()) {
-       
-                    navigate('/inventory');
-            
-            } else if (isAuthenticated() && isUserSales()) {
-       
-                navigate('/orders');
         
-             }
-            else{
-            
-                setError(true);
-                }
+        dispatch(authenticateUser(data)).then(() => {
+
+            if (isAuthenticated() && isUserInventory()) {
+
+                navigate('/inventory');
+
+            } else if (isAuthenticated() && isUserSales()) {
+
+                navigate('/orders');
+
             }
+            else if( !isAuthenticated()) {
+
+                setError(true);
+            }
+        }
 
         );
 
     };
-
-
 
     return (
         <div>
@@ -68,9 +66,9 @@ const LoginPageProps: React.FunctionComponent<ILoginPageProps> = (props) => {
 
                         <div className="col-start-3 col-span-2 ...  ">
                             <div className="form-control pb-2">
-                            {
-                            error && <label><p className="text-red-500 pl-1 text-lg ">Either of username or password is incorrect</p></label>
-                        }
+                                {
+                                    error && <label><p className="text-red-500 pl-1 text-lg ">Either of username or password is incorrect</p></label>
+                                }
                                 <label className="label">
                                     <span className="label-text text-lg">Username</span>
                                 </label>
@@ -95,11 +93,11 @@ const LoginPageProps: React.FunctionComponent<ILoginPageProps> = (props) => {
 
 
                         </div>
-                       
-                        
+
+
                         <div className="col-start-3 col-span-2 ... ">
-                            
-                        <button className="btn btn-outline " type="submit">Login</button>
+
+                            <button className="btn btn-outline " type="submit">Login</button>
 
                         </div>
                         <br />
