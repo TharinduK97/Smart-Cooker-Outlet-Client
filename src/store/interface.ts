@@ -1,13 +1,12 @@
-import { number } from "yup/lib/locale";
+
 
 export interface IProduct {
-        product_code: number;
-        product_name: string;
+        id: string;
+        productName: string;
+        description:string;
         price: number;
         quantity: number;
-        last_updated: string;
-        productDescription:string;
-        productImage:string;
+        imageUrl:string;
 };
 
 export interface IOrder {

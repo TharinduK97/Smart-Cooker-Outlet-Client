@@ -20,10 +20,10 @@ function Localinventory() {
         <div>
             <div className="container mx-auto pb-8  ">
                 <div className="grid grid-cols-8 gap-6 pt-6 ">
-
+                   
                     <div className="col-start-2 col-end-3 ">
                         {
-                            isUserInventory()&&<Link to="/addnewproduct" className="btn btn btn-outline  ">
+                            isUserInventory()&&<Link to="/add-new-product" className="btn btn btn-outline  ">
                             Add new Product
                     </Link>
                         }

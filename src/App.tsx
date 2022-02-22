@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/navbar';
 import AddNewProduct from './containers/AddNewProduct/addNewProduct';
 import Order from './containers/Order/Order';
 import Oderviewpage from './components/Orders/oderviewPage';
+import RouteLock from './helpers/RouteLock';
 
 
 export interface IAppProps { }
@@ -24,10 +25,10 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
 
         <Navbar />
         <Routes >
-       
-        <Route path="/addnewproduct" element={<AddNewProduct />} />
-          <Route path="/login" element={<Login />} />
-         
+
+        <Route path="/login" element={<Login />} />
+        <Route  element={<RouteLock/>} >
+        <Route path="/add-new-product" element={<AddNewProduct />} />
           <Route path="/orders">
             <Route index element={<Order />} />
             <Route path=":number" element={<Oderviewpage />} />
@@ -37,7 +38,7 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
             <Route path=":id" element={<Inventoryview />} />
           </Route>
           <Route path="/"  element={<Mainpage />} />
-
+          </Route >
         </Routes>
 
 

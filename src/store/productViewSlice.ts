@@ -9,13 +9,13 @@ export interface IProducts {
   }
 
   const initialState: IProducts = { isLoadingProducts: false , product:{
-    product_code: 0,
-    product_name: "",
+  
+    id: "",
+    productName: "",
+    description:"",
     price: 0,
     quantity: 0,
-    last_updated: "",
-    productDescription:"",
-    productImage:""
+    imageUrl:""
   } };
 
   export const productViewSlice = createSlice({
@@ -46,11 +46,11 @@ export interface IProducts {
   
   export const fetchSingleProduct = (id:string) => async (dispatch: any) => {
     dispatch(start());
-    // console.log(id)
+   
     try {
       const product = await getSingleProduct(id);
-      // console.log(product)
-      dispatch(success({product : product}));
+      
+      dispatch(success({product : product.data}));
     } catch (err:any) {
       dispatch(error(err));
     }

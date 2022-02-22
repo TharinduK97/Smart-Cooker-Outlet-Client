@@ -2,22 +2,22 @@
 
 
 type productprops = {
-    product: {
-        product_code: number;
-        product_name: string;
+    product:{
+        id: string;
+        productName: string;
+        description:string;
         price: number;
         quantity: number;
-        last_updated: string;
-        productDescription: string;
-        productImage: string;
-    };
+        imageUrl:string;
+    }
+   
 }
 
 function ProductView(props: productprops) {
     
     return (
         <div>
-
+               
             <div className="container mx-auto pt-6 ">
 
                 <div className="grid grid-cols-7 gap-4">
@@ -26,11 +26,12 @@ function ProductView(props: productprops) {
 
                         <div className="card card-bordered">
                             <figure>
-                                <img src={props.product.productImage} />
+                                
+                                <img src={props.product.imageUrl} />
                             </figure>
                             <div className="card-body">
                                 <h2 className="card-title">
-                                    <div className="badge mx-2 badge-secondary">{props.product.product_name}</div>
+                                    <div className="badge mx-2 badge-secondary">{props.product.productName}</div>
                                 </h2>
                                 <div className="grid grid-cols-5 gap-4 pb-2">
 
@@ -42,7 +43,7 @@ function ProductView(props: productprops) {
                                     </div>
 
                                 </div>
-                                <p>{props.product.productDescription}</p>
+                                <p>{props.product.description}</p>
                                 <div className="justify-end card-actions">
                                 
                                 </div>
