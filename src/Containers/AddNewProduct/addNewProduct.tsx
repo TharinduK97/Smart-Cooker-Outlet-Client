@@ -6,8 +6,8 @@ import { addNewProduct } from "../../Services/Product";
 import { data } from "autoprefixer";
 import { render } from "react-dom";
 import { storage } from "../../Services/FireBase";
-
-
+import { useNavigate } from 'react-router-dom';
+import {  toast } from 'react-toastify';
 
 interface IFormInputs {
     ProductName: string
@@ -18,12 +18,12 @@ interface IFormInputs {
 }
 
 const schema = yup.object({
-    ProductName: yup.string().required().min(6, 'Product Name must be at least 6 characters')
+    ProductName: yup.string().required('Product Name is required').min(6, 'Product Name must be at least 6 characters')
         .max(40, 'Product Name must not exceed 40 characters'),
-    ProductDescription: yup.string().required().min(6, 'Product Description must be at least 6 characters')
-        .max(200, 'Product Description must not exceed 40 characters'),
-    ProductPrice: yup.number().positive().required().max(10000000),
-    ProductQuantity: yup.number().positive().integer().required().max(100000),
+    ProductDescription: yup.string().required('Product Description is required').min(6,'Product Description must be at least 6 characters')
+        .max(500, 'Product Description must not exceed 500 characters'),
+    ProductPrice: yup.number().typeError('Product Price must be a number').positive().required('Product Price is required').min(0,'Minimum value 0').max(10000000),
+    ProductQuantity: yup.number().typeError('Product Quantity must be a number').positive().integer().required('Product Quantity is required').min(0,'Minimum value 0').max(100000),
     ProductImage: yup.mixed().test("fileSize", "The file is too large", (value) => {
         if (!value.length) return true 
         return value[0].size <= 2000000
@@ -38,29 +38,24 @@ var fileType = new File([''], '', {
 function AddNewProduct() {
 
     const [image, setImage] = useState<File>(fileType);
-
-    let  today 		= new Date();
-	let  dd 		= String(today.getDate()).padStart(2, '0');
-	let  mm 		= String(today.getMonth() + 1).padStart(2, '0'); 
-	let  yyyy 		= today.getFullYear();
-    let date =` ${yyyy}-${mm}-${dd}`;
-
+    const navigate = useNavigate();
+ 
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
         resolver: yupResolver(schema)
     });
 
-
+    const notify = () => toast("Wow so easy !");
 
     const onSubmit = async (data: IFormInputs) => {
-        console.log(data.ProductName)
+       
         let productobj = {
-            "product_name": data.ProductName,
+            "productName": data.ProductName,
+            "description": data.ProductDescription,
             "price": data.ProductPrice,
             "quantity": data.ProductQuantity,
-            "last_updated": date,
-            "productDescription": data.ProductDescription,
-            "productImage": ""
+            "imageUrl": ""
         }
+      
 
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
         await uploadTask.on(
@@ -80,19 +75,20 @@ function AddNewProduct() {
                     .child(image.name)
                     .getDownloadURL()
                     .then((url) => {
-                        productobj.productImage = url;
-                        // console.log(productobj);
+                        productobj.imageUrl = url;
+                        
 
                         addNewProduct(productobj)
                             .then(function (response) {
-                                // console.log(response);
-                                response.status == 201?
-                                alert("Product Added")
+                                 console.log(response);
+                                if(response.status == 200){
+                                    //alert('Success')
+                                    toast("Product is Added");
+                                    navigate('/inventory');
+                                } else if(response.status == 400){
+                                    alert("Try Again")
+                                }
                                 
-                                :
-
-                                alert("Try Again")
-                                // return response;
                             })
                             .catch(function (response) {
                                 console.log(response);
@@ -116,7 +112,7 @@ function AddNewProduct() {
             <form className="form-detail" onSubmit={handleSubmit(onSubmit)} >
                 <div className="container mx-auto  ">
 
-                    <div className="grid grid-cols-6 gap-4 p-10 card bg-base-200 ">
+                    <div className="grid grid-cols-6 gap-4 p-10 card  ">
 
 
                         <div className="col-start-3 col-span-2 ...  ">
@@ -139,7 +135,7 @@ function AddNewProduct() {
 
                             <div className="form-control pb-2">
                                 <label className="label">
-                                    <span className="label-text text-lg">Product Price</span>
+                                    <span className="label-text text-lg">Product Price (Rs.)</span>
                                 </label>
                                 <input type="number" placeholder="Product Price" className="input input-bordered" {...register("ProductPrice")} />
                             </div>
@@ -186,3 +182,5 @@ function AddNewProduct() {
 }
 
 export default AddNewProduct
+
+

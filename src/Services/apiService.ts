@@ -7,7 +7,7 @@ const handleResponse = (response: any) => {
     if (response.status === 401) {
         removeTokens();
         // history.push('/v1');
-         window.location.reload();
+        // window.location.reload();
     }
     if (response.data.status !== 'OK') {
         // console.log(response.data)

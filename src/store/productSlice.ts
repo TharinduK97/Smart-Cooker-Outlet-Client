@@ -40,7 +40,7 @@ export interface IProductList {
     dispatch(start());
     try {
       const productLists = await getProductList();
-      dispatch(success({productList : productLists}));
+      dispatch(success({productList : productLists.data}));
     } catch (err:any) {
       dispatch(error(err));
     }

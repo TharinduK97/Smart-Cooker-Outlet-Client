@@ -22,7 +22,11 @@ function Inventoryview() {
       
     return (
         <div>
-               <Inventoryviewpage product={product.product}/>
+           
+               <Inventoryviewpage product={product.product}
+               
+               
+               />
         </div>
     )
 }

@@ -1,24 +1,27 @@
 import axios from "axios";
 import { storage } from "./FireBase"
 import { get } from './apiService';
+import { getAccessToken } from "./localStorage";
 
 
 
 export const getSingleProduct = async function (data:string) {
-    return await get(`https://61fa979892093f0017ad9922.mockapi.io/product/${data}`);
+ 
+    return await get(`Product/${data}`);
   };
 
 export const getProductList = async function () {
-    return await get(`https://61fa979892093f0017ad9922.mockapi.io/product`);
+    return await get(`Product/GetAll`);
   };
 
 export const addNewProduct = (data: object) => {
-    
+  let token =  getAccessToken();
    return axios({
         method: 'post',
-        url: 'https://61fa979892093f0017ad9922.mockapi.io/product',
+        url: 'https://localhost:44362/Product',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
         data: data
     });

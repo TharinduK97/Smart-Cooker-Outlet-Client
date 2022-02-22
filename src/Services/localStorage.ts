@@ -3,13 +3,12 @@ import jwt_decode from "jwt-decode";
 
 
 export const setTokens = (authRes: any) => {
-   console.log(authRes.data)
   localStorage.setItem('token', authRes.data);
 
 };
 
 export const setRole = async (Res: any) => {
-  console.log(Res.data)
+ 
  
  localStorage.setItem('user', Res.data.id);
  localStorage.setItem('role', Res.data.role.title);
